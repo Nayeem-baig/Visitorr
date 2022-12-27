@@ -1,3 +1,7 @@
+<h4>Search</h4>
+<%= form_for "", url: spaces_path, role: "search", method: :get do %>
+<%= text_field_tag :search, @search_term, placeholder: "Seach..." %>
+<%end%>
 <h1>All Spaces</h1>
 <ul>
   <% @spaces.each do |space| %>

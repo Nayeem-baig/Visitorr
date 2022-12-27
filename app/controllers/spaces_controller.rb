@@ -2,9 +2,12 @@ class SpacesController < ApplicationController
 
   before_action :authenticate_user!
   def index
-
-    @spaces = Space.all
-    # @spaces = Space.where(user_id: current_user.id)
+    # @spaces = Space.all
+    @spaces = Space.where(user_id: current_user.id)
+    if params[:search]
+      @search_term = params[:search]
+      @spaces = @spaces.search_by(@search_term)
+    end
   end
 
   def show

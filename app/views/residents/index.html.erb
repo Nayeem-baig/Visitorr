@@ -1,5 +1,12 @@
+<% if false %>
+  <h4>Search</h4>
+<%= form_for "", url: space_residents_path, role: "search", method: :get do %>
+<%= text_field_tag :search, @search_term, placeholder: "Seach..." %>
+<%end%>
+<%end%>
 <h2>Residents</h2> 
 <%= link_to "Add New Resident", new_space_resident_path %>
+
 <% @space.residents.each do |resident| %>
 
 
