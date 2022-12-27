@@ -1,0 +1,10 @@
+<h1>All Spaces</h1>
+<ul>
+  <% @spaces.each do |space| %>
+    <li>
+    <%= link_to space.name, space %>
+    </li>
+  <% end %>
+</ul>
+
+<%= link_to "New Space", new_space_path %>

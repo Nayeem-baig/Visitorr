@@ -1,0 +1,31 @@
+<h4>Belongs to <%= @resident.space.name %></h4>
+<br/>
+<div class="border">
+ <p>
+    <strong>Name:</strong>
+    <%= @resident.name %>
+  </p>
+<div>
+<p>
+    <strong>Flat:</strong>
+    <%= @resident.flat %>
+  </p>
+</div>
+<div>
+<p>
+    <strong>Mobile:</strong>
+    <%= @resident.mob %>
+  </p>
+</div>
+<div>
+<p>
+    <strong>Email:</strong>
+    <%= @resident.email %>
+  </p>
+</div>
+
+<%= link_to "Edit" , edit_space_resident_path(@resident.space, @resident)%>
+<%= link_to "Destroy Resident", [@resident.space, @resident], data: {
+      turbo_method: :delete,
+                  turbo_confirm: "Are you sure?"
+                } %>

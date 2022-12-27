@@ -1,0 +1,14 @@
+<h1><%= @space.name %></h1>
+
+<p><%= @space.address %></p>
+
+<ul>
+  <li><%= link_to "Edit", edit_space_path(@space) %></li>
+  <li><%= link_to "Destroy", space_path(@space), data: {
+                    turbo_method: :delete,
+                    turbo_confirm: "Are you sure?"
+                  } %></li>
+</ul>
+
+<%= link_to "View " + @space.name + " residents",space_residents_path(@space) %>
+

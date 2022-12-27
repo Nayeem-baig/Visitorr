@@ -1,0 +1,36 @@
+<h2>Residents</h2> 
+<%= link_to "Add New Resident", new_space_resident_path %>
+<% @space.residents.each do |resident| %>
+
+
+<div class="border">
+ <p>
+    <strong>Name:</strong>
+    <%= resident.name %>
+  </p>
+<div>
+<p>
+    <strong>Flat:</strong>
+    <%= resident.flat %>
+  </p>
+</div>
+<div>
+<p>
+    <strong>Mobile:</strong>
+    <%= resident.mob %>
+  </p>
+</div>
+<div>
+<p>
+    <strong>Email:</strong>
+    <%= resident.email %>
+  </p>
+</div>
+<div>
+<p>
+    <%= link_to "Show" , space_resident_path(resident.space, resident) %>
+  </p>
+</div>
+</div>
+<%end%>
+
