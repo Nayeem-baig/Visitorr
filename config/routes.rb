@@ -9,5 +9,6 @@ Rails.application.routes.draw do
   root to: 'spaces#index'
   resources :spaces do
     resources :residents
+    resources :visitors
   end
 end

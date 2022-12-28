@@ -1,6 +1,7 @@
 class Space < ApplicationRecord
     belongs_to :user
     has_many :residents
+    has_many :visitors
     validates :name, presence: true
     validates :address, presence: true, length: { minimum: 10 }
     

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_12_26_081219) do
+ActiveRecord::Schema[7.0].define(version: 2022_12_28_142047) do
   create_table "residents", force: :cascade do |t|
     t.string "name"
     t.string "mob"
@@ -46,6 +46,21 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_26_081219) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  create_table "visitors", force: :cascade do |t|
+    t.string "name"
+    t.string "mob"
+    t.string "address"
+    t.string "resident_id"
+    t.integer "space_id", null: false
+    t.string "reason"
+    t.datetime "check_in"
+    t.datetime "check_out"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["space_id"], name: "index_visitors_on_space_id"
+  end
+
   add_foreign_key "residents", "spaces"
   add_foreign_key "spaces", "users"
+  add_foreign_key "visitors", "spaces"
 end

@@ -10,5 +10,47 @@
                   } %></li>
 </ul>
 
-<%= link_to "View " + @space.name + " residents",space_residents_path(@space) %>
+<% if false %>
+  <h4>Search</h4>
+<%= form_for "", url: space_residents_path, role: "search", method: :get do %>
+<%= text_field_tag :search, @search_term, placeholder: "Seach..." %>
+<%end%>
+<%end%>
+ <%= link_to "Add Visitor", new_space_visitor_path(@space) %> 
 
+<h2>Residents</h2> 
+ <%= link_to "Add New Resident", new_space_resident_path(@space) %> 
+
+<% @space.residents.each do |resident| %>
+
+
+<div class="border">
+ <p>
+    <strong>Name:</strong>
+    <%= resident.name %>
+  </p>
+<div>
+<p>
+    <strong>Flat:</strong>
+    <%= resident.flat %>
+  </p>
+</div>
+<div>
+<p>
+    <strong>Mobile:</strong>
+    <%= resident.mob %>
+  </p>
+</div>
+<div>
+<p>
+    <strong>Email:</strong>
+    <%= resident.email %>
+  </p>
+</div>
+<div>
+<p>
+    <%= link_to "Options" , space_resident_path(resident.space, resident) %>
+  </p>
+</div>
+</div>
+<%end%>

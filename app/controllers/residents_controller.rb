@@ -18,24 +18,24 @@ class ResidentsController < ApplicationController
     def show
       @resident = @space.residents.find(params[:id])
     end
-      def edit
+
+    def edit
         @resident = @space.residents.find(params[:id])
-      end
+    end
     
-      def update
+    def update
         @resident = @space.residents.find(params[:id])
     
-        if @resident.update(resident_params)
-          redirect_to @resident
-        else
+      if @resident.update(residents_params)
+          redirect_to space_residents_path(@space), status: :see_other
+      else
           render :edit, status: :unprocessable_entity
-        end
       end
+    end
 
       def destroy
         @resident = @space.residents.find(params[:id])
         @resident.destroy
-        # redirect_to space_path(@space), status: :see_other
         redirect_to space_residents_path(@space), status: :see_other
       end
       def set_space

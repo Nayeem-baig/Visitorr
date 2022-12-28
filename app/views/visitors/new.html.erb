@@ -1,0 +1,27 @@
+<h2>Add a Visitor:</h2>
+ <%= form_with model: [ @space,  @residents, @space.visitors.build ] do |form| %> 
+ 
+  <p>
+    <%= form.label :name %><br>
+    <%= form.text_field :name %>
+  </p>
+  <p>
+    <%= form.label :mob %><br>
+    <%= form.text_area :mob %>
+  </p>
+ 
+    <%= form.label :address %><br>
+    <%= form.text_area :address %>
+  </p>
+  <p>
+    <%= form.label :Flat %><br>
+    <%= form.collection_select :resident_id, Resident.order(:flat),:id,:flat, include_blank: true %></p>
+   <p>
+    <%= form.label :reason %><br>
+    <%= form.text_area :reason %>
+  </p>
+  
+  <p>
+    <%= form.submit %>
+  </p>
+<% end %>

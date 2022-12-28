@@ -23,8 +23,7 @@
     <%= @resident.email %>
   </p>
 </div>
-
-<%= link_to "Edit" , edit_space_resident_path(@resident.space, @resident)%>
+<%= link_to "Edit" , edit_space_resident_path(@resident.space, @resident) %>
 <%= link_to "Destroy Resident", [@resident.space, @resident], data: {
       turbo_method: :delete,
                   turbo_confirm: "Are you sure?"

@@ -1,3 +1,24 @@
 <h2>Add residents </h2>
 
-<%= render "resident_form" %>
+<%= form_with model: [ @space, @space.residents.build ] do |form| %>
+  <p>
+    <%= form.label :name %><br>
+    <%= form.text_field :name %>
+  </p>
+  <p>
+    <%= form.label :mob %><br>
+    <%= form.text_area :mob %>
+  </p>
+  <p>
+    <%= form.label :email %><br>
+    <%= form.text_area :email %>
+  </p>
+  <p>
+    <%= form.label :flat %><br>
+    <%= form.text_area :flat %>
+  </p>
+  <p>
+    <%= form.submit %>
+  </p>
+</div>
+<%end%>
