@@ -10,4 +10,10 @@ class Space < ApplicationRecord
         where("LOWER(name) LIKE :search_term",
         search_term: "%#{search_term.downcase}%")
     end
+
+    def one_space_per_user
+        if user.space && user.space != self
+          errors.add(:user, "already has a space")
+        end
+    end
 end

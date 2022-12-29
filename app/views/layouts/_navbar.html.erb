@@ -9,6 +9,13 @@
       <li class="nav-item">
         <%= link_to "Manage space", root_path , class:"nav-link"%>
       </li>
+       <li class="nav-item">
+        <%= link_to "Manage Residents",  space_residents_path(id=1) , class:"nav-link"%>
+      </li>
+       <li class="nav-item">
+        <%= link_to "Manage Visitors",   space_visitors_path(id=1) , class:"nav-link"%>
+      </li>
+    
      <li class="nav-item">
         <%= link_to "Profile",  edit_user_registration_path , class:"nav-link"%>
       </li>

@@ -1,15 +1,29 @@
-<h4>Search</h4>
+<%
+=begin%>
+ <h4>Search</h4>
 <%= form_for "", url: spaces_path, role: "search", method: :get do %>
 <%= text_field_tag :search, @search_term, placeholder: "Seach..." %>
-<%end%>
-<h1>All Spaces</h1>
+<%end%> 
+<%
+=end%>
+<h1>My Space</h1>
 <ul>
   <% @spaces.each do |space| %>
     <li>
     <%= link_to space.name, space %>
     </li>
+    <ul>
+  <li><%= link_to "Edit", edit_space_path(space.id) %></li>
+  <li><%= link_to "Destroy", space_path(space), data: {
+                    turbo_method: :delete,
+                    turbo_confirm: "Are you sure?"
+                  } %></li>
+</ul>
   <% end %>
 </ul>
-
+<%if @spaces == [] %>
 <%= link_to "New Space", new_space_path %>
+<%end%>
+
+
 
