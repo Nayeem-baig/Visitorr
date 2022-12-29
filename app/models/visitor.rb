@@ -5,5 +5,5 @@ class Visitor < ApplicationRecord
     validates :mob, presence: true
       validates :address, presence: true
         validates :reason, presence: true
-          validates :reason, presence: true
+          validates :check_in, presence: true
 end

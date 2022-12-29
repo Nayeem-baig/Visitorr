@@ -1,0 +1,4 @@
+<h3>Total Visitors :<%= @space.visitors.all.length %></h3>
+
+<h3>Visitors today :<%= @space.visitors.where('created_at >= ?', 1.day.ago).count  %></h3>
+<h3>Visitors Yesturday :<%= @space.visitors.where('created_at BETWEEN ? AND ?', Date.today, Date.today-1).count  %></h3>

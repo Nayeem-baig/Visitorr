@@ -6,6 +6,9 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
+     <li class="nav-item">
+        <%= link_to "Dashboard",   space_dashboard_index_path(id=1) , class:"nav-link"%>
+      </li>
       <li class="nav-item">
         <%= link_to "Manage space", root_path , class:"nav-link"%>
       </li>
@@ -15,7 +18,6 @@
        <li class="nav-item">
         <%= link_to "Manage Visitors",   space_visitors_path(id=1) , class:"nav-link"%>
       </li>
-    
      <li class="nav-item">
         <%= link_to "Profile",  edit_user_registration_path , class:"nav-link"%>
       </li>

@@ -10,5 +10,7 @@ Rails.application.routes.draw do
   resources :spaces do
     resources :residents
     resources :visitors
+  
+    resources :dashboard
   end
 end
