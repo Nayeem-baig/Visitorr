@@ -15,7 +15,12 @@
   </p>
   <p>
     <%= form.label :Flat %><br>
-    <%= form.collection_select :resident_id, Resident.order(:flat),:id,:flat, include_blank: true %></p>
+    <%
+=begin%>
+ <%= form.collection_select :resident_id, Resident.order(:flat),:id,:flat, include_blank: true %></p> 
+<%
+=end%>
+    <%= form.select(:resident_id, Resident.all.collect { |resident| [ resident.flat, resident.id ] }, {include_blank: true}, { "data-placeholder": "Select Resident" }) %>
    <p>
     <%= form.label :reason %><br>
     <%= form.text_area :reason %>

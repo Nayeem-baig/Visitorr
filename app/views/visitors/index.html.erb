@@ -1,2 +1,39 @@
-<h1>Visitors index</h1>
 <%= link_to "Add Visitor", new_space_visitor_path(@space) %> 
+<h2>All Visitors</h2> 
+
+<% @space.visitors.each do |visitor| %>
+<div class="border">
+ <p>
+    <strong>Name:</strong>
+    <%= visitor.name %>
+  </p>
+  <p>
+    <strong>Flat:</strong>
+    <%= visitor.resident.flat %>
+  </p>
+   <p>
+    <strong>To Meet:</strong>
+    <%= visitor.resident.name %>
+  </p>
+  <p>
+    <strong>Purpose:</strong>
+    <%= visitor.reason %>
+  </p>
+  <p>
+    <strong>Address:</strong>
+    <%= visitor.address %>
+  </p>
+   <p>
+    <strong>Check in:</strong>
+    <%= visitor.created_at %>
+  </p>
+    <p>
+    <strong>Check out:</strong>
+    <% if visitor.check_out == nil %>
+    Sign out
+    <% end %>
+  </p>
+<div>
+</div>
+<%end%>
+

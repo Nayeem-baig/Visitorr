@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_12_29_072731) do
+ActiveRecord::Schema[7.0].define(version: 2022_12_29_111120) do
   create_table "residents", force: :cascade do |t|
     t.string "name"
     t.string "mob"
@@ -50,16 +50,18 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_29_072731) do
     t.string "name"
     t.string "mob"
     t.string "address"
-    t.string "resident_id"
     t.integer "space_id", null: false
     t.string "reason"
     t.datetime "check_in"
     t.datetime "check_out"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "resident_id", null: false
+    t.index ["resident_id"], name: "index_visitors_on_resident_id"
     t.index ["space_id"], name: "index_visitors_on_space_id"
   end
 
   add_foreign_key "residents", "spaces"
+  add_foreign_key "visitors", "residents"
   add_foreign_key "visitors", "spaces"
 end

@@ -1,7 +1,7 @@
 class VisitorsController < ApplicationController
   before_action :set_space
    def index
-    @visitors = Space.find(params[:space_id])
+    @space = Space.find(params[:space_id])
    end
     def new
       @visitor = Visitor.new
