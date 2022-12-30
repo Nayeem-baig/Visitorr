@@ -3,7 +3,19 @@
 class Users::RegistrationsController < Devise::RegistrationsController
   before_action :configure_sign_up_params, only: [:create]
   before_action :configure_account_update_params, only: [:update]
+  before_action :set_space_id
+  before_action :disable_nav
+  
+  def index
+    @spaces = Space.where(user_id: current_user.id)
+  end
 
+  def disable_nav
+    @disable_nav = true
+  end
+  def set_space_id
+    @space = Space.where(user_id: current_user.id)
+  end
   # GET /resource/sign_up
   # def new
   #   super

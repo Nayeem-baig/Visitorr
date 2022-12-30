@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <%= link_to "Visitor", root_path , class:"navbar-brand ms-5"%>
+  <%= link_to "Visitor", space_path(@space.id) , class:"navbar-brand ms-5"%>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -7,18 +7,18 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
      <li class="nav-item">
-        <%= link_to "Dashboard",   space_dashboard_index_path(id=1) , class:"nav-link"%>
+        <%= link_to "Dashboard",   space_dashboard_index_path(@space.id) , class:"nav-link"%>
       </li>
       <li class="nav-item">
-        <%= link_to "Manage space", root_path , class:"nav-link"%>
+        <%= link_to "Manage space", space_path(@space.id) , class:"nav-link"%>
       </li>
        <li class="nav-item">
-        <%= link_to "Manage Residents",  space_residents_path(id=1) , class:"nav-link"%>
+        <%= link_to "Manage Residents",  space_residents_path(@space.id) , class:"nav-link"%>
       </li>
        <li class="nav-item">
-        <%= link_to "Manage Visitors",   space_visitors_path(id=1) , class:"nav-link"%>
+        <%= link_to "Manage Visitors",   space_visitors_path(@space.id) , class:"nav-link"%>
       </li>
-     <li class="nav-item">
+      <li class="nav-item">
         <%= link_to "Profile",  edit_user_registration_path , class:"nav-link"%>
       </li>
     </ul>

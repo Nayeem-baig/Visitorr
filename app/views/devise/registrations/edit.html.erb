@@ -1,5 +1,8 @@
 <h2>Edit <%= resource_name.to_s.humanize %></h2>
 <% if user_signed_in? %>
+<h1>
+
+</h1>
   Logged in as <strong><%= current_user.email %></strong><strong>
   <%= link_to 'Edit profile', edit_user_registration_path  %>  |
   <%= link_to  'Logout', destroy_user_session_path,

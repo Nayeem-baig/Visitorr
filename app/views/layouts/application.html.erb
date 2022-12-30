@@ -15,14 +15,22 @@
 
   <body>
   <%if (user_signed_in?) then%>
-  <%= render "layouts/navbar"%>
   <%end%>
   <%if (notice || alert) then%>
   <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
   <%end%>
-
     <div>
+ <%
+=begin%>
+ <%= render "layouts/navbar" unless @disable_nav %> 
+<%
+=end%>
+    <%
+=begin%>
+ space_path(@space.id) 
+<%
+=end%>
     <%= yield %>
     </div>
   </body>
