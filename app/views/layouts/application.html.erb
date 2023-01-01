@@ -14,24 +14,13 @@
   </head>
 
   <body>
-  <%if (user_signed_in?) then%>
-  <%end%>
-  <%if (notice || alert) then%>
-  <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-  <%end%>
     <div>
- <%
-=begin%>
- <%= render "layouts/navbar" unless @disable_nav %> 
-<%
-=end%>
-    <%
-=begin%>
- space_path(@space.id) 
-<%
-=end%>
-    <%= yield %>
+    <%= render "layouts/sidebar" unless @disable_nav %>  
+     <%if (notice || alert) then%>
+      <p class="notice"><%= notice %></p>
+      <p class="alert"><%= alert %></p>
+     <%end%>
+      <%= yield %>
     </div>
   </body>
 </html>

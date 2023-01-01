@@ -6,23 +6,25 @@
 <%end%> 
 <%
 =end%>
+<%= @space%>
+
 <h1>My Space</h1>
-<ul>
-  <% @spaces.each do |space| %>
-    <li>
-    <%= link_to space.name, space %>
-    </li>
+<% if @space != nil %>
+  <ul>
+      <li>
+        <%= link_to @space.name, @space %>
+      </li>
     <ul>
-  <li><%= link_to "Edit", edit_space_path(space.id) %></li>
-  <li><%= link_to "Destroy", space_path(space), data: {
+      <li><%= link_to "Edit", edit_space_path(@space.id) %></li>
+      <li><%= link_to "Destroy", space_path(@space), data: {
                     turbo_method: :delete,
                     turbo_confirm: "Are you sure?"
                   } %></li>
-</ul>
-  <% end %>
-</ul>
-<%if @spaces == [] %>
-<%= link_to "New Space", new_space_path %>
+    </ul>
+  </ul>
+<% end %>
+<%if @space == nil %>
+<%= link_to "Add a New Space to continue!", new_space_path %>
 <%end%>
 
 

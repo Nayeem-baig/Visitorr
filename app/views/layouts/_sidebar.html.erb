@@ -1,0 +1,48 @@
+<div class="container-fluid" style="">
+    <div class="row flex-nowrap ">
+        <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0" style="background-color:#83F8C0;border-radius:0px 30px 30px 0px">
+            <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
+                <a href="/" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+                <div class="">
+                   <%= image_tag("d-page icon",size: "150x150", :alt => "icon") %>
+                     <div class="title"> <p style="font-size:60px;">Visitorr</p></div>
+                     </div>
+                </a>
+                <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
+                    <li class="nav-item">
+                                <%= link_to "Dashboard",   space_dashboard_index_path(@space.id) , class:"nav-link"%>
+                            <i class="fs-4 bi-house"></i> 
+                        </a>
+                    </li>
+                    <li>
+                         <%= link_to "Manage Space", space_path(@space.id) , class:"nav-link"%>
+                            <i class="fs-4 bi-speedometer2"></i>
+                    </li>
+                    <li>
+                        <%= link_to "Manage Residents",  space_residents_path(@space.id) , class:"nav-link"%>
+                            <i class="fs-4 bi-table"></i>
+                    </li>
+                    <li>
+                         <%= link_to "Manage Visitors",   space_visitors_path(@space.id) , class:"nav-link"%>
+                    </li>   
+                </ul>
+                <hr>
+                <div class="dropdown pb-4">
+                    <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+                        <span class="d-none d-sm-inline mx-1"><%= current_user.first_name%></span>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
+                        <li class="ms-4">
+                         <%= link_to "Profile",  edit_user_registration_path , class:"nav-link"%>
+                        </li>
+                            <hr class="dropdown-divider">
+                        <li class="ms-4">
+                         <%= link_to  'Logout', destroy_user_session_path,
+                                'data-turbo-method': :delete %>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col py-3">
+            

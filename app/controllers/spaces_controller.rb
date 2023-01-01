@@ -1,24 +1,31 @@
 class SpacesController < ApplicationController
-
+  # before_action :set_space
   before_action :authenticate_user!
+
   def index
     # @spaces = Space.all
-    @spaces = Space.where(user_id: current_user.id)
-    if params[:search]
-      @search_term = params[:search]
-      @spaces = @spaces.search_by(@search_term)
+    @space = Space.where(user_id: current_user.id).first
+    if @space == nil
+      @disable_nav = true
     end
+    # if params[:search]
+    #   @search_term = params[:search]
+    #   @spaces = @spaces.search_by(@search_term)
+    # end
   end
 
   def show
+    @disable_nav = false
     @space = Space.find(params[:id])
   end
   def new
+    @disable_nav = true
     @space = Space.new
   end
 
   def create
     @space = Space.new(space_params)
+    @disable_nav = true
     @space.user_id = current_user.id
     if @space.save
       redirect_to @space

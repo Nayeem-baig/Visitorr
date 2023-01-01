@@ -73,3 +73,4 @@ end
 
 # user gems
 gem 'devise'
+gem 'ransack'

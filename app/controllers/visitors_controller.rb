@@ -2,10 +2,6 @@ class VisitorsController < ApplicationController
   before_action :set_space
    def index
     @space = Space.find(params[:space_id])
-    if params[:search]
-      @search_term = params[:search]
-      @space = @space.search_by(@search_term)
-    end
    end
     def new
       @visitor = Visitor.new
