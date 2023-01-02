@@ -11,4 +11,6 @@ class Visitor < ApplicationRecord
             where("LOWER(name) LIKE :search_term",
             search_term: "%#{search_term.downcase}%")
         end
+
+        paginates_per 10
 end

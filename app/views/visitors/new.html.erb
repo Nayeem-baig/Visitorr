@@ -1,6 +1,9 @@
+<% if @residents == [] %>
+<h4> You must have atleast one Resident to add visitor Please Add residents to you're premises to continue...</h4>
+<%= link_to "Add New Resident", new_space_resident_path %>
+<% else %>
 <h2>Add a Visitor:</h2>
- <%= form_with model: [ @space,  @residents, @space.visitors.build ] do |form| %> 
- 
+<%= form_with model: [ @space,  @residents, @space.visitors.build ] do |form| %> 
   <p>
     <%= form.label :name %><br>
     <%= form.text_field :name %>
@@ -20,13 +23,15 @@
  <%= form.collection_select :resident_id, Resident.order(:flat),:id,:flat, include_blank: true %></p> 
 <%
 =end%>
-    <%= form.select(:resident_id, Resident.all.collect { |resident| [ resident.flat, resident.id ] }, {include_blank: true}, { "data-placeholder": "Select Resident" }) %>
+    <%= form.select(:resident_id, Space.where(user_id: current_user.id).first.residents.collect { |resident| [ resident.flat, resident.id ] }, {include_blank: true}, { "data-placeholder": "Select Resident" }) %>
    <p>
     <%= form.label :reason %><br>
     <%= form.text_area :reason %>
   </p>
   
-  <p>
-    <%= form.submit %>
+  <p >
+    <%= form.submit :"Add Visitor", style:"padding : 10px 10px 10px 10px; background-color:#83F8C0 ; border:none ;border-radius:5px; color:white"%>
   </p>
 <% end %>
+<% end %>
+ 

@@ -13,7 +13,8 @@
  *= require_tree .
  *= require_self
  */
- .myButton {
-    display: inline;
-}
-.button-to { display:inline-block;}
+ .form { display:inline-block;}
+ #form { display:inline-block;}
+ .button_to .form .div {
+    display:inline-block;
+ }

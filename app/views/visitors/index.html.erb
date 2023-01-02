@@ -1,13 +1,27 @@
-<div class="btn" style="background-color:#83F8C0; font-color:white ">
-<%= link_to "Add New Visitor", new_space_visitor_path(@space) ,:class => "btn  d-flex flex-row-reverse"%>
-</div>
+<div class="d-flex justify-content-between">
 <div class="mt-2">
 <%= form_for "", url: space_visitors_path, role: "search", method: :get do %>
 <%= text_field_tag :search, @search_term, placeholder: "Seach..." %>
-<%end%> 
+<%end%>
+</div>
+<div>
+<%= link_to "Add New Visitor", new_space_visitor_path(@space) ,:class => "btn d-flex flex-row-reverse" ,style:"padding : 10px 10px 10px 10px; background-color:#83F8C0 ; border:none ;border-radius:5px; color:white"%>
+</div>
 </div>
 
-<h2>All Visitors</h2> 
+<% if @search_term.to_s != "" %>
+  <i> <%= "Displaying search for " +"'" + @search_term + "'" %> </i> 
+  <% else %>
+<h2>All Visitors</h2>
+<%end%>
+
+<% if @visitors == [] %>
+
+<div>
+<h3> <i>No records found...</i></h3>
+</div>
+<%else%>
+
 <div class="row d-flex ms-1 me-1">
     <strong class="col">Name:</strong>
     <strong class="col">Flat:</strong>
@@ -40,10 +54,15 @@
     <p class="col">
       <% if visitor.check_out == nil %>
           <%= button_to "Sign out", check_out_space_visitor_path(@space.id , visitor.id , check_out: Time.now), method: :patch %>
+
           <%else%>
           <%= visitor.check_out.in_time_zone("Kolkata").strftime("%I:%M %p %m-%d") %>
       <% end %>
     </p>
       </div>
 <%end%>
+<div class="d-flex justify-content-center">
+<%= paginate @visitors %>
+</div>
+<% end %>
 

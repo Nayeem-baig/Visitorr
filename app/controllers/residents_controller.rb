@@ -9,7 +9,7 @@ class ResidentsController < ApplicationController
     end
     
     def create
-        @space = Space.find(params[:space_id])
+        @space = Space.where(user_id: current_user.id).first
         @resident = @space.residents.create(residents_params)
         redirect_to space_residents_path(@space), status: :see_other
         # redirect_to space_path(@space)

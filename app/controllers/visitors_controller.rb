@@ -2,7 +2,7 @@ class VisitorsController < ApplicationController
   before_action :set_space
    def index
     @space = Space.where(user_id: current_user.id).first
-    @visitors = @space.visitors
+    @visitors = @space.visitors.page(params[:page])
      if params[:search]
       @search_term = params[:search]
       @visitors = @visitors.search_by(@search_term)
@@ -13,11 +13,12 @@ class VisitorsController < ApplicationController
     end
     def create
       require 'date'
-      @space = Space.find(params[:space_id])
+      @space = Space.where(user_id: current_user.id).first
       @residents = @space.residents.all
       @visitor = @space.visitors.create(visitors_params)
       @visitor.check_in = Time.now
       if @space.save
+        NotifyMailer.with(resident_email: @visitor.resident.email , visitor: @visitor).notify_resident.deliver_now
       redirect_to space_visitors_path(@space), status: :see_other
       else
         respond_to do |format|  format.html { redirect_to request.referer, alert: 'Add fields required!' } end

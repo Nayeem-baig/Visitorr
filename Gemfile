@@ -74,3 +74,4 @@ end
 # user gems
 gem 'devise'
 gem 'ransack'
+gem 'kaminari'
