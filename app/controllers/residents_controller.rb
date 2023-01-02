@@ -1,7 +1,7 @@
 class ResidentsController < ApplicationController
   before_action :set_space
     def index
-      @space = Space.find(params[:space_id])
+      @space = Space.where(user_id: current_user.id).first
       # if params[:search]
       #   @search_term = params[:search]
       #   @space = @space.search_by(@search_term)
@@ -39,7 +39,7 @@ class ResidentsController < ApplicationController
         redirect_to space_residents_path(@space), status: :see_other
       end
       def set_space
-        @space = Space.find(params[:space_id])
+        @space = Space.where(user_id: current_user.id).first
       end
       private
         def residents_params

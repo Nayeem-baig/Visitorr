@@ -6,4 +6,9 @@ class Visitor < ApplicationRecord
       validates :address, presence: true
         validates :reason, presence: true
           validates :check_in, presence: true
+
+          def self.search_by(search_term)
+            where("LOWER(name) LIKE :search_term",
+            search_term: "%#{search_term.downcase}%")
+        end
 end

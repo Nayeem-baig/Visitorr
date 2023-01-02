@@ -10,8 +10,12 @@ Rails.application.routes.draw do
 
   resources :spaces do
     resources :residents
-    resources :visitors
-  
+    resources :visitors do
+      member do
+        patch :check_out
+      end
+    end
+    
     resources :dashboard
   end
 end

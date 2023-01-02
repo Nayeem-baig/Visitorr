@@ -1,38 +1,49 @@
-<%= link_to "Add Visitor", new_space_visitor_path(@space) %> 
-<h2>All Visitors</h2> 
+<div class="btn" style="background-color:#83F8C0; font-color:white ">
+<%= link_to "Add New Visitor", new_space_visitor_path(@space) ,:class => "btn  d-flex flex-row-reverse"%>
+</div>
+<div class="mt-2">
+<%= form_for "", url: space_visitors_path, role: "search", method: :get do %>
+<%= text_field_tag :search, @search_term, placeholder: "Seach..." %>
+<%end%> 
+</div>
 
-<% @space.visitors.each do |visitor| %>
-<div class="border">
- <p>
-    <strong>Name:</strong>
+<h2>All Visitors</h2> 
+<div class="row d-flex ms-1 me-1">
+    <strong class="col">Name:</strong>
+    <strong class="col">Flat:</strong>
+    <strong class="col">To Meet:</strong>
+    <strong class="col">Purpose:</strong>
+    <strong class="col">Address:</strong>
+    <strong class="col">Check in:</strong>
+    <strong class="col">Check out:</strong>
+</div>
+<% @visitors.each do |visitor| %>
+<div class="border row ms-1 mb-1 me-1" style="border-radius: 5px;">
+  <p class="col">
     <%= visitor.name %>
   </p>
-  <p>
-    <strong>Flat:</strong>
+  <p class="col">
     <%= visitor.resident.flat %>
   </p>
-   <p>
-    <strong>To Meet:</strong>
+   <p class="col">
     <%= visitor.resident.name %>
   </p>
-  <p>
-    <strong>Purpose:</strong>
+  <p class="col">
     <%= visitor.reason %>
   </p>
-  <p>
-    <strong>Address:</strong>
+  <p class="col">
     <%= visitor.address %>
   </p>
-   <p>
-    <strong>Check in:</strong>
-    <%= visitor.check_in %>
+   <p class="col">
+    <%= visitor.check_in.in_time_zone("Kolkata").strftime("%I:%M %p %m-%d") %>
   </p>
-    <p>
-    <strong>Check out:</strong>
-    <% if visitor.check_out == nil %>
-    Sign out
-    <% end %>
-  </p>
-</div>
+    <p class="col">
+      <% if visitor.check_out == nil %>
+          <%= button_to "Sign out", check_out_space_visitor_path(@space.id , visitor.id , check_out: Time.now), method: :patch %>
+          <%else%>
+          <%= visitor.check_out.in_time_zone("Kolkata").strftime("%I:%M %p %m-%d") %>
+      <% end %>
+    </p>
+      </div>
 <%end%>
 
