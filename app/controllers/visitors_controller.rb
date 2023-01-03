@@ -2,7 +2,7 @@ class VisitorsController < ApplicationController
   before_action :set_space
    def index
     @space = Space.where(user_id: current_user.id).first
-    @visitors = @space.visitors.page(params[:page])
+    @visitors = @space.visitors.page(params[:page]).reverse_order
      if params[:search]
       @search_term = params[:search]
       @visitors = @visitors.search_by(@search_term)
