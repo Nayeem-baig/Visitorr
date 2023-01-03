@@ -1,5 +1,5 @@
 class DashboardController < ApplicationController
     def index
-        @space = Space.find(params[:space_id])
+        @space = Space.where(user_id: current_user.id).first
     end
 end

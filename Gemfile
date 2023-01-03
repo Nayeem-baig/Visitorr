@@ -75,3 +75,7 @@ end
 gem 'devise'
 gem 'ransack'
 gem 'kaminari'
+gem "chartkick"
+gem "groupdate"
+
+gem "font-awesome-rails", "~> 4.7"

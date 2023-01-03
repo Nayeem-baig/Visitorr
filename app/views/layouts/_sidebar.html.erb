@@ -9,18 +9,15 @@
                      </div>
                 </a>
                 <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
-                    <li class="nav-item">
-                                <%= link_to "Dashboard",   space_dashboard_index_path(@space.id) , class:"nav-link"%>
-                            <i class="fs-4 bi-house"></i> 
-                        </a>
+                    <li class="nav-item d-flex align-items-center">
+                    <%= fa_icon "gauge" %>
+                   <%= link_to "Dashboard", space_dashboard_index_path(@space.id) , class:"nav-link"%>
                     </li>
                     <li>
                          <%= link_to "Manage Space", space_path(@space.id) , class:"nav-link"%>
-                            <i class="fs-4 bi-speedometer2"></i>
                     </li>
                     <li>
                         <%= link_to "Manage Residents",  space_residents_path(@space.id) , class:"nav-link"%>
-                            <i class="fs-4 bi-table"></i>
                     </li>
                     <li>
                          <%= link_to "Manage Visitors",   space_visitors_path(@space.id) , class:"nav-link"%>

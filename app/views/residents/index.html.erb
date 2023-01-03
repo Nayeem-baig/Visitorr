@@ -1,44 +1,53 @@
-<% if false %>
-  <h4>Search</h4>
+<div class="d-flex justify-content-between">
+<div class="mt-2">
 <%= form_for "", url: space_residents_path, role: "search", method: :get do %>
 <%= text_field_tag :search, @search_term, placeholder: "Seach..." %>
 <%end%>
+</div>
+<div>
+<%= link_to "Add New Resident", new_space_resident_path  ,:class => "btn d-flex flex-row-reverse my-btn" %>
+</div>
+</div>
+<% if @search_term.to_s != "" %>
+  <i> <%= "Displaying search for " +"'" + @search_term + "'" %> </i> 
+  <% else %>
+<h2>All Residents</h2>
 <%end%>
-<h2>Residents</h2> 
-<%= link_to "Add New Resident", new_space_resident_path %>
 
-<% @space.residents.each do |resident| %>
+<% if @residents == [] %>
 
+<div>
+<h3> <i>No records found...</i></h3>
+</div>
+<%else%>
+<div class="d-flex flex-column align-items-center justify-content-around"> 
 
-<div class="border">
+<% @residents.in_groups_of(6).each do |group| %>
+  <div class="row ">
+<% group.each do |resident| %>
+
+<div class="border d-flex m-3 align-items-center " style="width:250px; border-radius: 5px;" >
+<div class="col">
  <p>
-    <strong>Name:</strong>
     <%= resident.name %>
   </p>
-<div>
+<div >
 <p>
     <strong>Flat:</strong>
     <%= resident.flat %>
   </p>
 </div>
-<div>
-<p>
-    <strong>Mobile:</strong>
-    <%= resident.mob %>
-  </p>
 </div>
 <div>
 <p>
-    <strong>Email:</strong>
-    <%= resident.email %>
-    <%= resident.space.name %>
-  </p>
-</div>
-<div>
-<p>
-    <%= link_to "Options" , space_resident_path(resident.space, resident) %>
+  <%=  link_to image_tag("edit",size: "25x25", :alt => "icon") , space_resident_path(resident.space, resident) %>
   </p>
 </div>
 </div>
 <%end%>
+</div>
+<%end%>
+<%end%>
+</div>
+<%= paginate @residents %>
 

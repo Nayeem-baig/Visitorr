@@ -2,10 +2,11 @@ class ResidentsController < ApplicationController
   before_action :set_space
     def index
       @space = Space.where(user_id: current_user.id).first
-      # if params[:search]
-      #   @search_term = params[:search]
-      #   @space = @space.search_by(@search_term)
-      # end
+      @residents = @space.residents.page(params[:page])
+      if params[:search]
+        @search_term = params[:search]
+        @residents = @residents.search_by(@search_term)
+      end
     end
     
     def create

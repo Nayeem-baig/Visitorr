@@ -1,21 +1,43 @@
-
 <div class="d-flex flex-column align-self-start">
+<h3> Visitor's chart</h3>
 <div class="graph-div">
-<h1>
-Graph comes here
-</h1>
+<%= line_chart @space.visitors.group_by_day(:created_at).count ,
+  colors: ["#83F8C0", "#666"] , empty: "No data start recording visitors to see graphs..." ,
+  download: {filename: "Visitors graph " + Time.now.to_s}
+  %>
 </div>
+
 <div class="d-flex justify-content-around ">
-<div class="today">
-<h3>Today's Visitors :<%= @space.visitors.where('created_at >= ?', Date.today).count  %></h3>
 
+<div class="today"  style="border:1px solid gray; border-radius:20px; padding:1em">
+    <div class="d-flex ">
+        <%= image_tag("graph",size: "100x100", :alt => "icon") %>
+        <h1>
+            <%= @space.visitors.where('created_at >= ?', Date.today).count  %> 
+        </h1>
+    </div>
+    <p>Today's Visitors </p>
 </div>
-<div class="yesday">
-<h3>Yesturday's Visitors :<%= @space.visitors.where("DATE(created_at) = ?", Date.today-1).count  %></h3>
 
+
+<div class="today"  style="border:1px solid gray; border-radius:20px; padding:1em">
+    <div class="d-flex ">
+        <%= image_tag("graph",size: "100x100", :alt => "icon") %>
+        <h1>
+            <%= @space.visitors.where("DATE(created_at) = ?", Date.today-1).count  %>
+        </h1>
+    </div>
+    <p>Yesturday's Visitors</p>
 </div>
-<div class="7days">
-<h3>Total Visitors :<%= @space.visitors.count %></h3>
+
+<div class="today"  style="border:1px solid gray; border-radius:20px; padding:1em">
+    <div class="d-flex ">
+        <%= image_tag("graph",size: "100x100", :alt => "icon") %>
+        <h1>
+            <%= @space.visitors.where('created_at >= ?',  1.week.ago).count %>
+        </h1>
+    </div>
+    <p>Past 7 days </p>
 </div>
 </div>
 </div>

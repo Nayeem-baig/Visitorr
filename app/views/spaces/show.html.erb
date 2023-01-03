@@ -1,57 +1,14 @@
-<%= @space %>
 <h1><%= @space.name %></h1>
 
 <p><%= @space.address %></p>
-
-<ul>
-  <li><%= link_to "Edit", edit_space_path(@space) %></li>
-  <li><%= link_to "Destroy", space_path(@space), data: {
-                    turbo_method: :delete,
+<div class="d-flex m-2">
+<div class="d-flex m-2">
+  <%= link_to "Edit", edit_space_path(@space) ,:class => "btn d-flex my-btn"%>
+</div>
+<div class="d-flex m-2">
+  <%= link_to "Destroy", space_path(@space), data: {
+    turbo_method: :delete,
                     turbo_confirm: "Are you sure?"
-                  } %></li>
-</ul>
-
-<% if false %>
-  <h4>Search</h4>
-<%= form_for "", url: space_residents_path, role: "search", method: :get do %>
-<%= text_field_tag :search, @search_term, placeholder: "Seach..." %>
-<%end%>
-<%end%>
- <%= link_to "Add Visitor", new_space_visitor_path(@space) %> 
-
-<h2>Residents</h2> 
- <%= link_to "Add New Resident", new_space_resident_path(@space) %> 
-
-<% @space.residents.each do |resident| %>
-
-
-<div class="border">
- <p>
-    <strong>Name:</strong>
-    <%= resident.name %>
-  </p>
-<div>
-<p>
-    <strong>Flat:</strong>
-    <%= resident.flat %>
-  </p>
-</div>
-<div>
-<p>
-    <strong>Mobile:</strong>
-    <%= resident.mob %>
-  </p>
-</div>
-<div>
-<p>
-    <strong>Email:</strong>
-    <%= resident.email %>
-  </p>
-</div>
-<div>
-<p>
-    <%= link_to "Options" , space_resident_path(resident.space, resident) %>
-  </p>
+                  } ,:class => "btn d-flex flex-row-reverse my-btn"%>
 </div>
 </div>
-<%end%>

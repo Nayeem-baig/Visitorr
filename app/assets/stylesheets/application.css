@@ -13,8 +13,22 @@
  *= require_tree .
  *= require_self
  */
- .form { display:inline-block;}
- #form { display:inline-block;}
- .button_to .form .div {
-    display:inline-block;
- }
+ /*
+ *= require font-awesome
+ */
+
+ body.dashboard_controller  #navigation a.menunav, body.drinks_controller #navigation a.drinknav {
+  background-color : yellow ;
+  text-decoration: underline;
+}
+.my-btn{
+  background-color:#83F8C0;
+  border-radius:5px;
+  color:white
+}
+.my-btn:hover{
+  scale: 1.1;
+  transition: 200ms;
+  background-color: #83F8C0;
+  color:white
+}

@@ -5,7 +5,7 @@
 <%end%>
 </div>
 <div>
-<%= link_to "Add New Visitor", new_space_visitor_path(@space) ,:class => "btn d-flex flex-row-reverse" ,style:"padding : 10px 10px 10px 10px; background-color:#83F8C0 ; border:none ;border-radius:5px; color:white"%>
+<%= link_to "Add New Visitor", new_space_visitor_path(@space) ,:class => "btn d-flex flex-row-reverse my-btn"%>
 </div>
 </div>
 
@@ -21,8 +21,7 @@
 <h3> <i>No records found...</i></h3>
 </div>
 <%else%>
-
-<div class="row d-flex ms-1 me-1">
+    <div class="row d-flex ms-1 me-1">
     <strong class="col">Name:</strong>
     <strong class="col">Flat:</strong>
     <strong class="col">To Meet:</strong>
@@ -53,7 +52,7 @@
   </p>
     <p class="col">
       <% if visitor.check_out == nil %>
-          <%= button_to "Sign out", check_out_space_visitor_path(@space.id , visitor.id , check_out: Time.now), method: :patch %>
+          <%= button_to "Sign out", check_out_space_visitor_path(@space.id , visitor.id , check_out: Time.now), method: :patch , style:"color:red; text-decoration:underline" ,class:"btn" %>
 
           <%else%>
           <%= visitor.check_out.in_time_zone("Kolkata").strftime("%I:%M %p %m-%d") %>
