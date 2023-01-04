@@ -1,26 +1,28 @@
 <div class="container-fluid" style="">
     <div class="row flex-nowrap ">
         <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0" style="background-color:#83F8C0;border-radius:0px 30px 30px 0px">
-            <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
-                <a href="/" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+            <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-5 text-white min-vh-100">
                 <div class="">
                    <%= image_tag("d-page icon",size: "150x150", :alt => "icon") %>
                      <div class="title"> <p style="font-size:60px;">Visitorr</p></div>
                      </div>
-                </a>
                 <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
                     <li class="nav-item d-flex align-items-center">
-                    <%= fa_icon "gauge" %>
+                    <i class="fa fa-gauge"></i>
                    <%= link_to "Dashboard", space_dashboard_index_path(@space.id) , class:"nav-link"%>
                     </li>
-                    <li>
+                    <li class="nav-item d-flex align-items-center">
+                    <i class="fa-sharp fa-solid fa-building"></i>
                          <%= link_to "Manage Space", space_path(@space.id) , class:"nav-link"%>
                     </li>
-                    <li>
-                        <%= link_to "Manage Residents",  space_residents_path(@space.id) , class:"nav-link"%>
+                    <li class="nav-item d-flex align-items-center">
+                   <i class="fa-solid fa-house-user"></i>
+                        <%= link_to "Manage Resident", space_residents_path(@space.id) , class:"nav-link"%>
                     </li>
-                    <li>
-                         <%= link_to "Manage Visitors",   space_visitors_path(@space.id) , class:"nav-link"%>
+                    </li>
+                    <li class="nav-item d-flex align-items-center">
+                    <i class="fa-solid fa-person"></i>
+                         <%= link_to "Manage Visitors", space_visitors_path(@space.id) , class:"nav-link"%>
                     </li>   
                 </ul>
                 <hr>
@@ -36,6 +38,7 @@
                         <li class="ms-4">
                          <%= link_to  'Logout', destroy_user_session_path,
                                 'data-turbo-method': :delete %>
+                        <i class="fa fa-right-from-bracket ms-2"></i>
                         </li>
                     </ul>
                 </div>

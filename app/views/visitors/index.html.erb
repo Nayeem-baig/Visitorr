@@ -1,14 +1,14 @@
 <div class="d-flex justify-content-between">
 <div class="mt-2">
 <%= form_for "", url: space_visitors_path, role: "search", method: :get do %>
-<%= text_field_tag :search, @search_term, placeholder: "Seach..." %>
+<%= text_field_tag :search, @search_term, placeholder: "Search...", class:"form-control form-control-lg"  %>
 <%end%>
 </div>
 <div>
 <%= link_to "Add New Visitor", new_space_visitor_path(@space) ,:class => "btn d-flex flex-row-reverse my-btn"%>
 </div>
-</div>
 
+</div>
 <% if @search_term.to_s != "" %>
   <i> <%= "Displaying search for " +"'" + @search_term + "'" %> </i> 
   <% else %>
@@ -21,6 +21,15 @@
 <h3> <i>No records found...</i></h3>
 </div>
 <%else%>
+ <%
+=begin%>
+ <%= date_select :date , nil %>  
+<%
+=end%>
+
+<%= form_for "", url: space_visitors_path,  method: :get do %>
+<%= text_field_tag :date , @date , placeholder: "View by date DD/MM/YYYY..."  %>
+<%end%>
     <div class="row d-flex ms-1 me-1">
     <strong class="col">Name:</strong>
     <strong class="col">Flat:</strong>
@@ -52,8 +61,7 @@
   </p>
     <p class="col">
       <% if visitor.check_out == nil %>
-          <%= button_to "Sign out", check_out_space_visitor_path(@space.id , visitor.id , check_out: Time.now), method: :patch , style:"color:red; text-decoration:underline" ,class:"btn" %>
-
+          <%= button_to "Sign out", check_out_space_visitor_path(@space.id , visitor.id ), method: :patch , style:"color:red; text-decoration:underline" ,class:"btn" %>
           <%else%>
           <%= visitor.check_out.in_time_zone("Kolkata").strftime("%I:%M %p %m-%d") %>
       <% end %>

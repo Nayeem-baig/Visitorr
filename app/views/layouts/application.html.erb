@@ -16,14 +16,12 @@
   <body>
     <div>
     <%= render "layouts/sidebar" unless @disable_nav %>  
-     <%
-=begin%>
- <%if (notice || alert) then%>
+ 
+    <%if (notice || alert) then%>
       <p class="notice"><%= notice %></p>
       <p class="alert"><%= alert %></p>
-     <%end%> 
-<%
-=end%>
+    <%end%> 
+
       <%= yield %>
     </div>
   </body>

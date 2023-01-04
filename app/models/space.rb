@@ -2,7 +2,7 @@ class Space < ApplicationRecord
     belongs_to :user
     has_many :residents
     has_many :visitors
-    validates :name, presence: true
+    validates :name, presence: { message: "must be given!" }
     validates :address, presence: true, length: { minimum: 10 }
     
 

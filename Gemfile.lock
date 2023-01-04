@@ -250,7 +250,7 @@ DEPENDENCIES
   chartkick
   debug
   devise
-  font-awesome-rails (~> 4.7)
+  font-awesome-rails
   groupdate
   importmap-rails
   jbuilder

@@ -3,35 +3,32 @@
 <%= link_to "Add New Resident", new_space_resident_path %>
 <% else %>
 <h2>Add a Visitor:</h2>
-<%= form_with model: [ @space,  @residents, @space.visitors.build ] do |form| %> 
+<%= form_with model: [ @space, @residents, @space.visitors.build ] do |form| %> 
+<div style="width:15rem"> 
   <p>
     <%= form.label :name %><br>
-    <%= form.text_field :name %>
+    <%= form.text_field :name , class:"form-control"%>
   </p>
   <p>
     <%= form.label :mob %><br>
-    <%= form.text_area :mob %>
+    <%= form.number_field :mob, class:"form-control " %>
   </p>
  
     <%= form.label :address %><br>
-    <%= form.text_area :address %>
+    <%= form.text_field :address, class:"form-control " %>
   </p>
   <p>
     <%= form.label :Flat %><br>
-    <%
-=begin%>
- <%= form.collection_select :resident_id, Resident.order(:flat),:id,:flat, include_blank: true %></p> 
-<%
-=end%>
-    <%= form.select(:resident_id, Space.where(user_id: current_user.id).first.residents.collect { |resident| [ resident.flat, resident.id ] }, {include_blank: true}, { "data-placeholder": "Select Resident" }) %>
+    <%= form.select(:resident_id, Space.where(user_id: current_user.id).first.residents.collect { |resident| [ resident.flat, resident.id ] }, {include_blank: true},{ :class => 'form-control'})%>
    <p>
     <%= form.label :reason %><br>
-    <%= form.text_area :reason %>
+    <%= form.text_field :reason , class:"form-control "%>
   </p>
   
   <p >
     <%= form.submit :"Add Visitor", class:"btn d-flex flex-row-reverse my-btn"%>
   </p>
+</div> 
 <% end %>
 <% end %>
  

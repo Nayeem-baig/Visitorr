@@ -1,21 +1,21 @@
 <%= form_with model: space do |form| %>
-  <div>
+  <div class="field ">
     <%= form.label :name %><br>
-    <%= form.text_field :name %>
+    <%= form.text_field :name , class:"form-control form-control-lg"%>
     <% space.errors.full_messages_for(:name).each do |message| %>
       <div><%= message %></div>
     <% end %>
   </div>
 
-  <div>
+  <div class="field ">
     <%= form.label :address %><br>
-    <%= form.text_area :address %><br>
+    <%= form.text_area :address , class:"form-control form-control-lg"%><br>
     <% space.errors.full_messages_for(:address).each do |message| %>
       <div><%= message %></div>
     <% end %>
   </div>
 
   <div>
-    <%= form.submit %>
+    <%= form.submit "Update" , class:"btn my-btn" %>
   </div>
 <% end %>

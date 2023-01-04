@@ -13,9 +13,7 @@
  *= require_tree .
  *= require_self
  */
- /*
- *= require font-awesome
- */
+
 
  body.dashboard_controller  #navigation a.menunav, body.drinks_controller #navigation a.drinknav {
   background-color : yellow ;

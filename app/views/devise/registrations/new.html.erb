@@ -12,7 +12,7 @@
       <%= render "devise/shared/error_messages", resource: resource %>
       <h2 class="d-flex align-items-center justify-content-center">Sign up!</h2>
 
-      <div class="name-con  d-flex flex-row justify-content-between">
+      <div class="name-con d-flex flex-row justify-content-between">
         <div class="field ">
           <%= f.label :first_name %><br />
           <%= f.text_field :first_name, autofocus: true  , placeholder:"Enter your first name" , class:"form-control form-control-lg"%>
@@ -29,7 +29,7 @@
 
     <div class="field ">
         <%= f.label :email %><br />
-        <%= f.email_field :email, autofocus: true, autocomplete: "email" , placeholder:"Enter your Email ID" , class:"form-control form-control-lg"%>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email" , placeholder:"Enter your Email ID" , class:"form-control form-control-lg" %>
     </div>
     <div class="name-con  d-flex flex-row justify-content-between">
       <div class="field ">
@@ -47,9 +47,12 @@
     </div>
 
     <div class="actions pt-5 d-flex align-items-center justify-content-center">
-        <%= f.submit "Sign up" , style:"padding : 10px 10px 10px 10px; background-color:#83F8C0 ; border:none ;border-radius:5px; color:white" %>
+        <%= f.submit "Sign up" , class:"btn my-btn" %>
     </div>
-<%= render "devise/shared/links" %>
+    <div class="d-flex justify-content-center mt-3">
+    <pre>Already have an account? </pre>
+  <%= render "devise/shared/links" %>
+  </div>
   </div>
 </div>
 <% end %>

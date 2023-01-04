@@ -1,11 +1,21 @@
 class VisitorsController < ApplicationController
   before_action :set_space
    def index
-    @space = Space.where(user_id: current_user.id).first
-    @visitors = @space.visitors.page(params[:page]).reverse_order
-     if params[:search]
+      @space = Space.where(user_id: current_user.id).first
+      @visitors = @space.visitors.page(params[:page]).reverse_order
+      if params[:search]
       @search_term = params[:search]
       @visitors = @visitors.search_by(@search_term)
+      end
+      if params[:date].to_s != ""
+        begin
+      @date = Date.parse(params[:date])
+      @visitors = @visitors.where(created_at: @date.midnight..@date.end_of_day)
+        rescue ArgumentError => e
+      flash.now[:alert] = 'Invalid date!'
+      redirect_to space_visitors_path(@space), status: :see_other
+      return
+    end
     end
    end
     def new
@@ -21,15 +31,22 @@ class VisitorsController < ApplicationController
         NotifyMailer.with(resident_email: @visitor.resident.email , visitor: @visitor).notify_resident.deliver_now
       redirect_to space_visitors_path(@space), status: :see_other
       else
-        respond_to do |format|  format.html { redirect_to request.referer, alert: 'Add fields required!' } end
+        render json: { status: 'failure', notice: @visitor.errors.objects.first.full_message }
       end
     end
+
+
     def check_out
-      @space = Space.where(user_id: current_user.id).first
       @visitor = @space.visitors.find(params[:id])
-      @visitor.update(check_out: params[:check_out])
-      redirect_to space_visitors_path(@space), status: :see_other
+      @visitor.check_out = Time.now
+      if @visitor.save
+        redirect_to space_visitors_path(@space), status: :see_other
+      else
+        flash.now[:alert] = 'Some error occured!'
+      end
     end
+
+
       def set_space
         @space = Space.where(user_id: current_user.id).first
       end

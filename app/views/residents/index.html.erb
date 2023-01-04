@@ -1,7 +1,7 @@
 <div class="d-flex justify-content-between">
 <div class="mt-2">
 <%= form_for "", url: space_residents_path, role: "search", method: :get do %>
-<%= text_field_tag :search, @search_term, placeholder: "Seach..." %>
+<%= text_field_tag :search, @search_term, placeholder: "Search..." , class:"form-control form-control-lg"%>
 <%end%>
 </div>
 <div>
@@ -21,17 +21,16 @@
 </div>
 <%else%>
 <div class="d-flex flex-column align-items-center justify-content-around"> 
-
-<% @residents.in_groups_of(6).each do |group| %>
+<% @residents.in_groups_of(@residents.count).each do |group| %>
   <div class="row ">
-<% group.each do |resident| %>
+    <% group.each do |resident| %>
 
-<div class="border d-flex m-3 align-items-center " style="width:250px; border-radius: 5px;" >
-<div class="col">
+    <div class="border d-flex m-3 align-items-center " style="width:250px; border-radius: 5px;" >
+    <div class="col">
  <p>
     <%= resident.name %>
   </p>
-<div >
+    <div >
 <p>
     <strong>Flat:</strong>
     <%= resident.flat %>
@@ -39,7 +38,7 @@
 </div>
 </div>
 <div>
-<p>
+<p title="Click to edit or delete">
   <%=  link_to image_tag("edit",size: "25x25", :alt => "icon") , space_resident_path(resident.space, resident) %>
   </p>
 </div>

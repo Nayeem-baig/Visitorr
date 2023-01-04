@@ -1,23 +1,26 @@
 <%# <%= form_with model: [ @space, @space.residents.build ] do |form| %> 
 <%= form_for(@resident, :url => {:action => 'update'}) do |form| %>
+<div style="width:15rem">
   <p>
-    <%= form.label :name %><br>
-    <%= form.text_field :name %>
+    <strong>Name:</strong>
+    <%= form.text_field :name, class:"form-control" %>
   </p>
   <p>
-    <%= form.label :mob %><br>
-    <%= form.text_area :mob %>
+    <strong>Flat:</strong>
+    <%= form.text_field :flat , class:"form-control"%>
   </p>
   <p>
-    <%= form.label :email %><br>
-    <%= form.text_area :email %>
+    <strong>Mobile:</strong>
+    <%= form.text_field :mob , class:"form-control"%>
   </p>
   <p>
-    <%= form.label :flat %><br>
-    <%= form.text_area :flat %>
+    <strong>Email:</strong>
+    <%= form.text_field :email, class:"form-control" %>
   </p>
   <p>
-  <%= form.submit :Submit, class: 'btn btn-primary btn-sm'%>
+  <%= link_to "Back" , :back, class: 'btn  btn-secondary' %>
+  <%= form.submit :Update, class: 'btn my-btn'%>
   </p>
+</div>
 </div>
 <%end%>

@@ -1,27 +1,18 @@
-<%
-=begin%>
- <h4>Search</h4>
-<%= form_for "", url: spaces_path, role: "search", method: :get do %>
-<%= text_field_tag :search, @search_term, placeholder: "Seach..." %>
-<%end%> 
-<%
-=end%>
-<%= @space%>
-
-<h1>My Space</h1>
 <% if @space != nil %>
-  <ul>
-      <li>
-        <%= link_to @space.name, @space %>
-      </li>
-    <ul>
-      <li><%= link_to "Edit", edit_space_path(@space.id) %></li>
-      <li><%= link_to "Destroy", space_path(@space), data: {
-                    turbo_method: :delete,
+  <h1><%= @space.name %></h1>
+
+<p><%= @space.address %></p>
+<div class="d-flex m-2">
+<div class="d-flex m-2">
+  <%= link_to "Edit", edit_space_path(@space) ,:class => "btn d-flex my-btn"%>
+</div>
+<div class="d-flex m-2">
+  <%= link_to "Destroy", space_path(@space), data: {
+    turbo_method: :delete,
                     turbo_confirm: "Are you sure?"
-                  } %></li>
-    </ul>
-  </ul>
+                  } ,:class => "btn btn-danger"%>
+</div>
+</div>
 <% end %>
 <%if @space == nil %>
 <%= link_to "Add a New Space to continue!", new_space_path %>
